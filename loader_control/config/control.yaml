@@ -1,0 +1,66 @@
+/**:
+  ros__parameters:
+    use_sim_time: false
+
+# === 状态估计器参数 ===
+state_estimator_node:
+  ros__parameters:
+    wheelbase: 2.8                # 装载车轴距 (m)
+    tau_v: 0.8                    # 油门响应时间常数 (s)
+    tau_delta: 0.3                # 转向响应时间常数 (s)
+    process_noise: [0.1, 0.1, 0.05, 0.2, 0.1]  # x,y,θ,v,δ
+    measurement_noise: [0.05, 0.05, 0.02, 0.1] # lidar_odom, imu, wheel, ...
+
+# === 轨迹跟踪器参数 ===
+trajectory_tracker_node:
+  ros__parameters:
+    # 通用参数
+    max_steering: 0.6
+    max_throttle: 0.8
+    control_rate: 20.0
+    wheelbase: 2.8
+    
+    # 控制器选择与配置
+    controller:
+      type: "pure_pursuit"  # 明确在controller层级下
+      
+      # 所有可能的控制器配置，但运行时只激活一个
+      pure_pursuit:
+        k_lookahead: 1.5
+        min_lookahead: 2.0
+        ff_weight: 0.3
+        
+      pid:
+        lat: {kp: 1.2, ki: 0.1, kd: 0.3}
+        heading: {kp: 0.8, ki: 0.05, kd: 0.2}
+        
+      mpc:
+        horizon: 10
+        dt: 0.05
+        Q: [1.0, 0.5, 0.2]
+        R: [0.01, 0.1]
+        
+      smc:
+        k_lat: 1.0
+        k_heading: 1.0
+        lambda_lat: 0.5
+        lambda_heading: 0.5
+
+# === 指令调制器参数 ===
+command_modulator_node:
+  ros__parameters:
+    max_steering: 0.6
+    max_throttle: 0.8
+    steering_rate_limit: 0.1      # rad/s (~5.7°/s)
+    throttle_alpha: 0.8           # 一阶平滑系数
+    steering_alpha: 0.9
+    enable_delay_compensation: true
+    tau_v: 0.8
+
+# === 安全监控参数 ===
+control_manager_node:
+  ros__parameters:
+    max_lateral_error: 1.5        # m → 触发降速
+    max_heading_error: 1.0        # rad
+    emergency_stop_timeout: 2.0   # s
+

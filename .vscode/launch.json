@@ -1,0 +1,97 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C++: 调试轨迹跟踪器节点",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/install/loader_control/lib/loader_control/trajectory_tracker_node",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "ROS_DOMAIN_ID",
+                    "value": "0"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "将反汇编风格设置为 Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "colcon-build-debug"
+        },
+        {
+            "name": "C++: 调试指令调制器节点",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/install/loader_control/lib/loader_control/command_modulator_node",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "ROS_DOMAIN_ID",
+                    "value": "0"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "colcon-build-debug"
+        },
+        {
+            "name": "C++: 调试控制管理器节点",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/install/loader_control/lib/loader_control/control_manager_node",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "ROS_DOMAIN_ID",
+                    "value": "0"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "colcon-build-debug"
+        },
+        {
+            "name": "Python: 调试测试脚本",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/loader_control/test/test_control_performance.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/loader_control/install/loader_control/lib/python3.10/site-packages:${env:PYTHONPATH}"
+            }
+        }
+    ]
+}
+
