@@ -2,34 +2,6 @@
 
 ## 一、编译步骤
 
-### Windows系统
-
-1. **打开命令提示符或PowerShell**
-
-2. **Source ROS2环境**
-   ```batch
-   call C:\opt\ros\humble\local_setup.bat
-   ```
-
-3. **进入项目目录**
-   ```batch
-   cd "C:\Users\14858\Desktop\ZJProject\控制模块\loader_control"
-   ```
-
-4. **编译项目**
-   ```batch
-   REM 方式1: 使用编译脚本
-   ..\compile.bat
-   
-   REM 方式2: 手动编译
-   colcon build --packages-select loader_control
-   ```
-
-5. **Source工作空间**
-   ```batch
-   call install\setup.bat
-   ```
-
 ### Linux系统
 
 1. **打开终端**
@@ -41,7 +13,7 @@
 
 3. **进入项目目录**
    ```bash
-   cd ~/loader_control_ws  # 或您的项目路径
+   cd /home/lzh/ZJProject/控制模块/loader_control
    ```
 
 4. **编译项目**

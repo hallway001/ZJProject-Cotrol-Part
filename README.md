@@ -6,29 +6,17 @@
 
 ### 编译项目
 
-#### Linux/macOS:
 ```bash
 # 方式1: 使用编译脚本（推荐）
+cd /home/lzh/ZJProject/控制模块/loader_control
 chmod +x compile.sh
 ./compile.sh          # Release版本
 ./compile.sh Debug    # Debug版本
 
 # 方式2: 手动编译
-cd loader_control
+cd /home/lzh/ZJProject/控制模块/loader_control
 colcon build --packages-select loader_control
 source install/setup.bash
-```
-
-#### Windows:
-```batch
-# 使用编译脚本
-compile.bat          # Release版本
-compile.bat Debug    # Debug版本
-
-# 或手动编译
-cd loader_control
-colcon build --packages-select loader_control
-call install\setup.bat
 ```
 
 ### 运行程序

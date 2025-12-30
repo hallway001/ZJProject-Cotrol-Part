@@ -13,28 +13,27 @@
 
 ```bash
 # 在项目父目录下创建工作空间
-mkdir -p ~/loader_control_ws/src
-cd ~/loader_control_ws/src
+mkdir -p /home/lzh/loader_control_ws/src
+cd /home/lzh/loader_control_ws/src
 
 # 如果loader_control不在src目录下，创建符号链接或复制
-# 假设您的项目在 C:\Users\14858\Desktop\ZJProject\控制模块\loader_control
-# Windows下：
-# mklink /D loader_control "C:\Users\14858\Desktop\ZJProject\控制模块\loader_control"
+# Linux下：
+# 假设您的项目在 /home/lzh/ZJProject/控制模块/loader_control
+# ln -s /home/lzh/ZJProject/控制模块/loader_control loader_control
 # 或者直接复制文件夹到src目录下
+# cp -r /home/lzh/ZJProject/控制模块/loader_control .
 ```
 
 ### 3. 编译步骤
 
 ```bash
 # 1. 进入工作空间根目录
-cd ~/loader_control_ws
+cd /home/lzh/loader_control_ws
 
 # 2. Source ROS2环境（根据您的ROS2版本选择）
 # Ubuntu/Linux:
 source /opt/ros/humble/setup.bash  # 或 iron, galactic等
 
-# Windows:
-call C:\opt\ros\humble\local_setup.bat
 
 # 3. 安装依赖（首次编译时）
 rosdep update
@@ -44,9 +43,7 @@ rosdep install --from-paths src --ignore-src -r -y
 colcon build --packages-select loader_control
 
 # 5. Source编译后的工作空间
-source install/setup.bash  # Linux
-# 或
-call install\setup.bat  # Windows
+source install/setup.bash
 ```
 
 ### 4. 编译选项
@@ -74,8 +71,7 @@ colcon build --packages-select loader_control --cmake-clean-cache
 
 ```bash
 # 确保已经source了工作空间
-source install/setup.bash  # Linux
-call install\setup.bat  # Windows
+source install/setup.bash
 
 # 启动整个控制栈
 ros2 launch loader_control control_stack.launch.py
