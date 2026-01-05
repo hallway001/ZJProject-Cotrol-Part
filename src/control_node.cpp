@@ -58,7 +58,7 @@ ControlNode::ControlNode(const std::string & node_name)
   }
   
   // Register parameter callback
-  add_on_set_parameters_callback(
+  [[maybe_unused]] auto param_callback_handle = add_on_set_parameters_callback(
     std::bind(&ControlNode::onParameterChange, this, std::placeholders::_1));
   
   // Create control loop timer
@@ -79,35 +79,35 @@ void ControlNode::initializeActuators()
   // Load actuator parameters from parameter server
   ActuatorModel::Config steering_config;
   steering_config.delay_time_constant = declare_parameter(
-    "actuator.steering.delay_time_constant", 0.15).as_double();
+    "actuator.steering.delay_time_constant", 0.15);
   steering_config.dead_zone = declare_parameter(
-    "actuator.steering.dead_zone", 0.02).as_double();
+    "actuator.steering.dead_zone", 0.02);
   steering_config.scale_bias = declare_parameter(
-    "actuator.steering.scale_bias", 1.02).as_double();
+    "actuator.steering.scale_bias", 1.02);
   steering_config.noise_std = declare_parameter(
-    "actuator.steering.noise_std", 0.005).as_double();
+    "actuator.steering.noise_std", 0.005);
   steering_config.max_value = declare_parameter(
-    "actuator.steering.max_angle", 0.785).as_double();
+    "actuator.steering.max_angle", 0.785);
   steering_config.min_value = declare_parameter(
-    "actuator.steering.min_angle", -0.785).as_double();
+    "actuator.steering.min_angle", -0.785);
   steering_config.filter_alpha = declare_parameter(
-    "actuator.steering.filter_alpha", 0.8).as_double();
+    "actuator.steering.filter_alpha", 0.8);
   
   ActuatorModel::Config throttle_config;
   throttle_config.delay_time_constant = declare_parameter(
-    "actuator.throttle.delay_time_constant", 0.2).as_double();
+    "actuator.throttle.delay_time_constant", 0.2);
   throttle_config.dead_zone = declare_parameter(
-    "actuator.throttle.dead_zone", 0.05).as_double();
+    "actuator.throttle.dead_zone", 0.05);
   throttle_config.scale_bias = declare_parameter(
-    "actuator.throttle.scale_bias", 1.0).as_double();
+    "actuator.throttle.scale_bias", 1.0);
   throttle_config.noise_std = declare_parameter(
-    "actuator.throttle.noise_std", 0.0).as_double();
+    "actuator.throttle.noise_std", 0.0);
   throttle_config.max_value = declare_parameter(
-    "actuator.throttle.max_value", 1.0).as_double();
+    "actuator.throttle.max_value", 1.0);
   throttle_config.min_value = declare_parameter(
-    "actuator.throttle.min_value", 0.0).as_double();
+    "actuator.throttle.min_value", 0.0);
   throttle_config.filter_alpha = declare_parameter(
-    "actuator.throttle.filter_alpha", 0.7).as_double();
+    "actuator.throttle.filter_alpha", 0.7);
   
   if (use_actuator_models_) {
     steering_actuator_ = std::make_shared<ActuatorModel>(steering_config, "steering");
@@ -125,31 +125,31 @@ void ControlNode::initializeController(const std::string & controller_type)
     pid_config.update_rate = control_rate_;
     
     pid_config.longitudinal.enable = declare_parameter(
-      "pid_controller.longitudinal.enable", true).as_bool();
+      "pid_controller.longitudinal.enable", true);
     pid_config.longitudinal.kp = declare_parameter(
-      "pid_controller.longitudinal.kp", 1.5).as_double();
+      "pid_controller.longitudinal.kp", 1.5);
     pid_config.longitudinal.ki = declare_parameter(
-      "pid_controller.longitudinal.ki", 0.1).as_double();
+      "pid_controller.longitudinal.ki", 0.1);
     pid_config.longitudinal.kd = declare_parameter(
-      "pid_controller.longitudinal.kd", 0.3).as_double();
+      "pid_controller.longitudinal.kd", 0.3);
     pid_config.longitudinal.max_integral = declare_parameter(
-      "pid_controller.longitudinal.max_integral", 1.0).as_double();
+      "pid_controller.longitudinal.max_integral", 1.0);
     
     pid_config.lateral.enable = declare_parameter(
-      "pid_controller.lateral.enable", true).as_bool();
+      "pid_controller.lateral.enable", true);
     pid_config.lateral.kp = declare_parameter(
-      "pid_controller.lateral.kp", 2.0).as_double();
+      "pid_controller.lateral.kp", 2.0);
     pid_config.lateral.ki = declare_parameter(
-      "pid_controller.lateral.ki", 0.05).as_double();
+      "pid_controller.lateral.ki", 0.05);
     pid_config.lateral.kd = declare_parameter(
-      "pid_controller.lateral.kd", 0.5).as_double();
+      "pid_controller.lateral.kd", 0.5);
     pid_config.lateral.max_integral = declare_parameter(
-      "pid_controller.lateral.max_integral", 0.5).as_double();
+      "pid_controller.lateral.max_integral", 0.5);
     
     pid_config.steering_compensation.enable = declare_parameter(
-      "pid_controller.steering_compensation.enable", true).as_bool();
+      "pid_controller.steering_compensation.enable", true);
     pid_config.steering_compensation.ff_gain = declare_parameter(
-      "pid_controller.steering_compensation.ff_gain", 0.3).as_double();
+      "pid_controller.steering_compensation.ff_gain", 0.3);
     
     controller_ = std::make_shared<PIDController>(pid_config);
     
@@ -159,20 +159,20 @@ void ControlNode::initializeController(const std::string & controller_type)
     pp_config.update_rate = control_rate_;
     
     pp_config.lookahead.base_distance = declare_parameter(
-      "pure_pursuit_controller.lookahead.base_distance", 2.0).as_double();
+      "pure_pursuit_controller.lookahead.base_distance", 2.0);
     pp_config.lookahead.min_distance = declare_parameter(
-      "pure_pursuit_controller.lookahead.min_distance", 1.0).as_double();
+      "pure_pursuit_controller.lookahead.min_distance", 1.0);
     pp_config.lookahead.max_distance = declare_parameter(
-      "pure_pursuit_controller.lookahead.max_distance", 5.0).as_double();
+      "pure_pursuit_controller.lookahead.max_distance", 5.0);
     pp_config.lookahead.velocity_gain = declare_parameter(
-      "pure_pursuit_controller.lookahead.velocity_gain", 0.5).as_double();
+      "pure_pursuit_controller.lookahead.velocity_gain", 0.5);
     
     pp_config.error_compensation.enable = declare_parameter(
-      "pure_pursuit_controller.error_compensation.enable", true).as_bool();
+      "pure_pursuit_controller.error_compensation.enable", true);
     pp_config.error_compensation.lookahead_error_gain = declare_parameter(
-      "pure_pursuit_controller.error_compensation.lookahead_error_gain", 0.5).as_double();
+      "pure_pursuit_controller.error_compensation.lookahead_error_gain", 0.5);
     pp_config.error_compensation.max_error_compensation = declare_parameter(
-      "pure_pursuit_controller.error_compensation.max_error_compensation", 1.0).as_double();
+      "pure_pursuit_controller.error_compensation.max_error_compensation", 1.0);
     
     controller_ = std::make_shared<PurePursuitController>(pp_config);
     
@@ -201,24 +201,24 @@ void ControlNode::initializeErrorMonitor()
   monitor_config.update_rate = control_rate_;
   
   monitor_config.statistics.window_duration = declare_parameter(
-    "error_monitor.statistics.window_duration", 2.0).as_double();
+    "error_monitor.statistics.window_duration", 2.0);
   monitor_config.statistics.enable_rmse = declare_parameter(
-    "error_monitor.statistics.enable_rmse", true).as_bool();
+    "error_monitor.statistics.enable_rmse", true);
   
   monitor_config.thresholds.warning_rmse = declare_parameter(
-    "error_monitor.thresholds.warning_rmse", 0.03).as_double();
+    "error_monitor.thresholds.warning_rmse", 0.03);
   monitor_config.thresholds.error_rmse = declare_parameter(
-    "error_monitor.thresholds.error_rmse", 0.05).as_double();
+    "error_monitor.thresholds.error_rmse", 0.05);
   monitor_config.thresholds.critical_rmse = declare_parameter(
-    "error_monitor.thresholds.critical_rmse", 0.1).as_double();
+    "error_monitor.thresholds.critical_rmse", 0.1);
   
   monitor_config.logging.enable = declare_parameter(
-    "error_monitor.logging.enable", true).as_bool();
+    "error_monitor.logging.enable", true);
   monitor_config.logging.log_dir = declare_parameter(
-    "error_monitor.logging.log_dir", "logs").as_string();
+    "error_monitor.logging.log_dir", std::string("logs"));
   
   monitor_config.visualization.enable = declare_parameter(
-    "error_monitor.visualization.enable", true).as_bool();
+    "error_monitor.visualization.enable", true);
   
   error_monitor_ = std::make_shared<SteeringErrorMonitor>(
     shared_from_this(), monitor_config);
@@ -302,7 +302,7 @@ void ControlNode::publishCommand(const ControlCommand & cmd)
   cmd_vel_pub_->publish(msg);
 }
 
-void ControlNode::publishVisualization(const VehicleState & state, const ControlCommand & cmd)
+void ControlNode::publishVisualization(const VehicleState & state, const ControlCommand & /* cmd */)
 {
   // Publish reference path
   if (!state.ref_path.poses.empty()) {
