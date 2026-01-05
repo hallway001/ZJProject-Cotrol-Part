@@ -1,0 +1,12 @@
+# Small Loader Vehicle Configuration
+# Overrides common/actuator.yaml
+actuator:
+  steering:
+    delay_time_constant: 0.15       # Faster response for small loader
+    dead_zone: 0.015                # Smaller dead zone
+    scale_bias: 1.01
+    max_angle: 0.698                # ±40°
+  
+  throttle:
+    delay_time_constant: 0.18       # Slightly faster throttle response
+

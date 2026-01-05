@@ -1,0 +1,27 @@
+# MPC Controller Configuration (Future expansion)
+mpc_controller:
+  update_rate: 20.0                 # Controller update frequency (Hz)
+  
+  prediction:
+    horizon: 10                     # Prediction horizon steps
+    dt: 0.1                         # Time step (s)
+  
+  weights:
+    position_x: 10.0
+    position_y: 10.0
+    yaw: 5.0
+    velocity: 1.0
+    steering_angle: 2.0
+    steering_rate: 1.0
+    steering_error: 10.0            # Penalty for steering command vs feedback error
+  
+  constraints:
+    max_velocity: 3.0               # m/s
+    max_acceleration: 1.5           # m/s²
+    max_steering: 0.785             # rad
+    max_steering_rate: 0.5          # rad/s
+  
+  model:
+    wheelbase: 2.5                  # Vehicle wheelbase (m)
+    use_dynamics: false             # Use kinematic model for now
+

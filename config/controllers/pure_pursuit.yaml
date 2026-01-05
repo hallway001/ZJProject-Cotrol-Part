@@ -1,0 +1,23 @@
+# Pure Pursuit Controller Configuration
+pure_pursuit_controller:
+  update_rate: 50.0                 # Controller update frequency (Hz)
+  
+  lookahead:
+    base_distance: 2.0              # Base lookahead distance (m)
+    min_distance: 1.0               # Minimum lookahead distance (m)
+    max_distance: 5.0               # Maximum lookahead distance (m)
+    velocity_gain: 0.5              # Lookahead distance velocity gain
+  
+  error_compensation:
+    enable: true
+    lookahead_error_gain: 0.5       # Lookahead distance adjustment based on steering error
+    max_error_compensation: 1.0     # Maximum additional lookahead from error (m)
+  
+  curvature:
+    min_radius: 2.0                 # Minimum turning radius (m)
+    max_curvature: 0.5              # Maximum curvature (1/m)
+  
+  output_limits:
+    max_velocity: 3.0               # m/s
+    max_steering: 0.785             # rad
+

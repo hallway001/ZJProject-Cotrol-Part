@@ -1,0 +1,37 @@
+# Steering Error Monitor Configuration
+error_monitor:
+  update_rate: 50.0                 # Monitor update frequency (Hz)
+  
+  statistics:
+    window_duration: 2.0            # Statistics window duration (s)
+    enable_rmse: true
+    enable_max_error: true
+    enable_integral: true
+  
+  thresholds:
+    warning_rmse: 0.03              # rad (≈1.7°)
+    error_rmse: 0.05                # rad (≈2.9°)
+    critical_rmse: 0.1              # rad (≈5.7°)
+    warning_duration: 1.0           # s, duration before warning
+  
+  logging:
+    enable: true
+    log_dir: "logs"
+    log_filename: "steering_error_%Y%m%d_%H%M%S.csv"
+    log_fields:
+      - "timestamp"
+      - "delta_cmd"
+      - "delta_fb"
+      - "error"
+      - "velocity_x"
+      - "curvature"
+      - "rmse"
+  
+  visualization:
+    enable: true
+    topic: "/loader/control/steering_error_vis"
+    marker_scale: 0.3
+    color_error_small: [0.0, 1.0, 0.0]   # Green
+    color_error_medium: [1.0, 1.0, 0.0]  # Yellow
+    color_error_large: [1.0, 0.0, 0.0]   # Red
+

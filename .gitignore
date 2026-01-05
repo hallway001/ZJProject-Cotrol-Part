@@ -1,0 +1,57 @@
+# Build files
+build/
+install/
+log/
+*.build
+*.install
+*.log
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+
+# Compiled files
+*.o
+*.so
+*.a
+*.exe
+*.dll
+*.dylib
+
+# ROS2 specific
+*.pyc
+__pycache__/
+*.egg-info/
+.pytest_cache/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Log files
+logs/
+*.csv
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+
+# Python virtual environment
+venv/
+env/
+ENV/
+
+# OS files
+Thumbs.db
+desktop.ini
+

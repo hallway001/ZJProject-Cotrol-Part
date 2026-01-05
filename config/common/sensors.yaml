@@ -1,0 +1,24 @@
+# Sensor topics and parameters
+sensors:
+  imu:
+    topic: "/loader/imu"
+    frame_id: "base_link"
+    use_filter: true
+    filter_cutoff_freq: 10.0  # Hz
+  
+  lidar:
+    topic: "/loader/scan"
+    frame_id: "laser_link"
+  
+  wheel_speed:
+    topic: "/loader/wheel_speed"
+    frame_id: "base_link"
+  
+  steering_rate:
+    topic: "/loader/steering_rate"
+    frame_id: "base_link"
+  
+  steering_feedback:
+    topic: "/loader/steering/feedback"
+    frame_id: "base_link"
+
