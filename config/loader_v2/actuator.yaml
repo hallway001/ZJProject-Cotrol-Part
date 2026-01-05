@@ -1,12 +1,12 @@
-# Large Loader Vehicle Configuration
-# Overrides common/actuator.yaml
-actuator:
-  steering:
-    delay_time_constant: 0.3        # Slower response for large loader
-    dead_zone: 0.025                # Larger dead zone
-    scale_bias: 1.03
-    max_angle: 0.785                # ±45°
-  
-  throttle:
-    delay_time_constant: 0.25       # Slower throttle response
+/**:
+  ros__parameters:
+    actuator:
+      steering:
+        delay_time_constant: 0.3        # Slower response for large loader
+        dead_zone: 0.025                # Larger dead zone
+        scale_bias: 1.03
+        max_angle: 0.785                # ±45°
+      
+      throttle:
+        delay_time_constant: 0.25       # Slower throttle response
 

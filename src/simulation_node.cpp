@@ -131,7 +131,7 @@ private:
     RCLCPP_INFO(get_logger(), "Generated path with %zu points", ref_path_.poses.size());
   }
   
-  void updateVehicleState(double dt)
+  void updateVehicleState([[maybe_unused]] double dt)
   {
     if (ref_path_.poses.empty()) {
       return;

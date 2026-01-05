@@ -1,11 +1,12 @@
-# Steering limits for loader_v1
-steering_limits:
-  mechanical:
-    max_angle: 0.698                # rad (±40°)
-    min_angle: -0.698
-    max_rate: 0.8                   # rad/s
-  
-  safety:
-    emergency_stop_error: 0.2       # rad, stop if error exceeds this
-    warning_error: 0.1              # rad, warn if error exceeds this
+/**:
+  ros__parameters:
+    steering_limits:
+      mechanical:
+        max_angle: 0.698                # rad (±40°)
+        min_angle: -0.698
+        max_rate: 0.8                   # rad/s
+      
+      safety:
+        emergency_stop_error: 0.2       # rad, stop if error exceeds this
+        warning_error: 0.1              # rad, warn if error exceeds this
 

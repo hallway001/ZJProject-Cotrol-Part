@@ -1,28 +1,29 @@
-# PID Controller Configuration
-pid_controller:
-  update_rate: 50.0                 # Controller update frequency (Hz)
-  
-  longitudinal:
-    enable: true
-    kp: 1.5
-    ki: 0.1
-    kd: 0.3
-    max_integral: 1.0
-    anti_windup: true
-  
-  lateral:
-    enable: true
-    kp: 2.0
-    ki: 0.05
-    kd: 0.5
-    max_integral: 0.5
-    anti_windup: true
-  
-  steering_compensation:
-    enable: true
-    ff_gain: 0.3                    # Feedforward gain for steering error compensation
-  
-  output_limits:
-    max_velocity: 3.0               # m/s
-    max_steering: 0.785             # rad
+/**:
+  ros__parameters:
+    pid_controller:
+      update_rate: 50.0                 # Controller update frequency (Hz)
+      
+      longitudinal:
+        enable: true
+        kp: 1.5
+        ki: 0.1
+        kd: 0.3
+        max_integral: 1.0
+        anti_windup: true
+      
+      lateral:
+        enable: true
+        kp: 2.0
+        ki: 0.05
+        kd: 0.5
+        max_integral: 0.5
+        anti_windup: true
+      
+      steering_compensation:
+        enable: true
+        ff_gain: 0.3                    # Feedforward gain for steering error compensation
+      
+      output_limits:
+        max_velocity: 3.0               # m/s
+        max_steering: 0.785             # rad
 

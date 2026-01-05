@@ -1,18 +1,19 @@
-# Actuator physical characteristics modeling
-actuator:
-  steering:
-    delay_time_constant: 0.15      # First-order delay time constant τ (s)
-    dead_zone: 0.02                 # Dead zone width ±0.02 rad (≈ ±1.15°)
-    scale_bias: 1.02                # Scale bias: actual_angle = scale_bias * command
-    noise_std: 0.005                # Gaussian noise std dev (rad)
-    max_angle: 0.785                # Maximum steering angle ±0.785 rad (≈ ±45°)
-    min_angle: -0.785
-    filter_alpha: 0.8               # Low-pass filter coefficient: α (0-1)
-  
-  throttle:
-    delay_time_constant: 0.2        # Throttle response delay (s)
-    dead_zone: 0.05                 # Throttle dead zone
-    max_value: 1.0                  # Maximum throttle (0-1)
-    min_value: 0.0
-    filter_alpha: 0.7
+/**:
+  ros__parameters:
+    actuator:
+      steering:
+        delay_time_constant: 0.15      # First-order delay time constant τ (s)
+        dead_zone: 0.02                 # Dead zone width ±0.02 rad (≈ ±1.15°)
+        scale_bias: 1.02                # Scale bias: actual_angle = scale_bias * command
+        noise_std: 0.005                # Gaussian noise std dev (rad)
+        max_angle: 0.785                # Maximum steering angle ±0.785 rad (≈ ±45°)
+        min_angle: -0.785
+        filter_alpha: 0.8               # Low-pass filter coefficient: α (0-1)
+      
+      throttle:
+        delay_time_constant: 0.2        # Throttle response delay (s)
+        dead_zone: 0.05                 # Throttle dead zone
+        max_value: 1.0                  # Maximum throttle (0-1)
+        min_value: 0.0
+        filter_alpha: 0.7
 
