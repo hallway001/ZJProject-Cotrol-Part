@@ -98,6 +98,7 @@ double ActuatorModel::applyLowPassFilter(double value, double dt)
   // First-order low-pass filter: y[k] = α * x[k] + (1-α) * y[k-1]
   // α = dt / (dt + τ_filter), where τ_filter is derived from filter_alpha
   // For simplicity, use filter_alpha directly
+  (void)dt;  // Suppress unused parameter warning
   double alpha = config_.filter_alpha;
   current_command_ = alpha * value + (1.0 - alpha) * current_command_;
   return current_command_;

@@ -18,6 +18,7 @@ bool PurePursuitController::initialize()
 
 ControlCommand PurePursuitController::computeCommand(const VehicleState & state, double dt)
 {
+  (void)dt;  // Suppress unused parameter warning
   ControlCommand cmd;
   cmd.stamp = state.stamp;
   

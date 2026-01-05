@@ -85,7 +85,7 @@ void SteeringErrorMonitor::update(const VehicleState & state)
   }
 }
 
-ErrorStatistics SteeringErrorMonitor::getStatistics() const
+SteeringErrorMonitor::ErrorStatistics SteeringErrorMonitor::getStatistics() const
 {
   std::lock_guard<std::mutex> lock(data_mutex_);
   return current_stats_;
@@ -120,7 +120,7 @@ void SteeringErrorMonitor::setConfig(const Config & config)
   }
 }
 
-ErrorStatistics SteeringErrorMonitor::calculateStatistics()
+SteeringErrorMonitor::ErrorStatistics SteeringErrorMonitor::calculateStatistics()
 {
   ErrorStatistics stats;
   
@@ -307,8 +307,11 @@ void SteeringErrorMonitor::logToFile(
   }
   
   // Write CSV row
+  int64_t total_nanoseconds = data.stamp.nanoseconds();
+  int64_t seconds = total_nanoseconds / 1000000000;
+  uint32_t nanoseconds = static_cast<uint32_t>(total_nanoseconds % 1000000000);
   log_file_ << std::fixed << std::setprecision(6)
-            << data.stamp.sec << "." << std::setfill('0') << std::setw(9) << data.stamp.nanosec << ","
+            << seconds << "." << std::setfill('0') << std::setw(9) << nanoseconds << ","
             << data.delta_cmd << ","
             << data.delta_fb << ","
             << data.error << ","

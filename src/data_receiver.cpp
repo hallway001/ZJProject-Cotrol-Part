@@ -105,6 +105,7 @@ void DataReceiver::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr ms
 {
   // For now, just store LiDAR data (can be used for obstacle avoidance later)
   // No need to lock since we're not updating critical state here
+  (void)msg;  // Suppress unused parameter warning
 }
 
 void DataReceiver::wheelSpeedCallback(const std_msgs::msg::Float64::SharedPtr msg)
