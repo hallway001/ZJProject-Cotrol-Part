@@ -91,10 +91,23 @@ target_link_libraries(${PROJECT_NAME}_node
   ${PROJECT_NAME}
 )
 
+# Create simulation node executable
+add_executable(simulation_node src/simulation_node.cpp)
+ament_target_dependencies(simulation_node
+  rclcpp
+  geometry_msgs
+  sensor_msgs
+  nav_msgs
+  std_msgs
+  tf2
+  tf2_ros
+)
+
 # Install
 install(TARGETS
   ${PROJECT_NAME}
   ${PROJECT_NAME}_node
+  simulation_node
   DESTINATION lib/${PROJECT_NAME}
 )
 

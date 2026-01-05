@@ -67,8 +67,10 @@ def generate_launch_description():
             PathJoinSubstitution([common_config_dir, 'sensors.yaml']),
             PathJoinSubstitution([common_config_dir, 'actuator.yaml']),
             
-            # Controller parameters
-            PathJoinSubstitution([controller_config_dir, f'{controller_type}.yaml']),
+            # Controller parameters - loaded conditionally based on controller_type
+            # Note: The node will load controller parameters via declare_parameter
+            # If you have controller YAML files, uncomment and fix the path below:
+            # PathJoinSubstitution([controller_config_dir, controller_type, '.yaml']),
             
             # Vehicle model parameters (overrides common)
             PathJoinSubstitution([vehicle_config_dir, 'actuator.yaml']),
